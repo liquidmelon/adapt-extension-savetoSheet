@@ -14,7 +14,7 @@ default behavior has been configured to submit course information (_isComplete) 
 
 
 
-## Reference links
+## Reference Links
 
 [submit data to google spreadsheet](http://mikeheavers.com/tutorials/submitting_custom_form_data_to_a_google_spreadsheet_with_javascript/)
 
