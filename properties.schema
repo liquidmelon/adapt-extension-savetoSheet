@@ -1,0 +1,35 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "pluginLocations": {
+      "type":"object",
+      "required":true,
+      "properties":{
+        "course": {
+          "type":"object",
+          "properties":{
+            "_savetoSheet": {
+              "type": "object",
+              "required": false,
+              "legend": "Save to Sheet",
+              "properties": {
+                "_useMethod": {
+                  "type": "string",
+                  "required": true,
+                  "title": "Use Method",
+                  "default": "ajaxBB",
+                  "inputType": {"type": "Select", "options":["ajaxBB", "ajaxJQ", "W3Sform", "modelCORS"]},
+                  "validators": ["required"],
+                  "help": "how to post the data"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
