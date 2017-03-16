@@ -143,10 +143,10 @@ define([
                 _timeout: 5000,
                 _callbackEvent: /*"pushNotify:clicked"*/ "" /*The _callbackEvent is triggered only if the push notification is clicked*/
             };
-            MyAdapt.on('pushNotify:clicked', function() {
+            Adapt.on('pushNotify:clicked', function() {
                 //console.log('A push notification was clicked');
             });
-            MyAdapt.trigger('notify:push', pushObject);
+            Adapt.trigger('notify:push', pushObject);
         }
 
     }, Backbone.Events);
