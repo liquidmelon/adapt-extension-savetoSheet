@@ -3,6 +3,7 @@ define([
 ], function(Adapt) {
 
     var t; //reference to this
+    var dataToPost; //String: "course is complete", "assessment is passed", "assessmentLMS is passed"
     var useMethod; //String: "ajaxBB", "ajaxJQ", "W3Sform", "modelCORS"
     var SD1; //Submit Data 1
     var SD2; //Submit Data 2
@@ -28,8 +29,33 @@ define([
 
         setupModel: function() {
             t.model = Adapt.course.get(t.PLUGIN_NAME);
+            dataToPost = t.model._dataToPost;
             useMethod = t.model._useMethod;
-            t.listenTo(Adapt.course, 'change:_isComplete', t.onCompletion);
+
+            if(dataToPost === "assessment is passed"){
+                Adapt.on("assessments:complete", t.quizDone); //with or without spoor enabled
+            }
+            else if(dataToPost === "assessmentLMS is passed"){
+                Adapt.on("assessment:complete", t.quizDone); //only with spoor enabled
+            }
+            else{
+                Adapt.course.on('change:_isComplete', t.courseDone); //all elements visited
+            }
+
+        },
+
+        courseDone: function(state){
+            SD1 = 'course';
+            SD2 = 'is completed';
+            t.onCompletion();
+        },
+
+        quizDone: function(state){
+            if(Boolean(state.isPass)){
+              SD1 = 'assessment';
+              SD2 = 'is passed';
+              t.onCompletion();
+            }
         },
 
         submitMyAjaxBB: function() {
@@ -116,9 +142,6 @@ define([
         },
 
         onCompletion: function(){
-
-            SD1 = encodeURI('_isComplete');
-            SD2 = encodeURI(String(Adapt.course.get('_isComplete')));
 
             switch(t.model._useMethod){
 
