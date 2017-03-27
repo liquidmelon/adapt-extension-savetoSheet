@@ -1,6 +1,7 @@
 /* course.json */
 {
   "_savetoSheet": {
-    "_useMethod": "model"
+    "_dataToPost": "assessment is passed",
+    "_useMethod": "modelCORS"
   }
 }
