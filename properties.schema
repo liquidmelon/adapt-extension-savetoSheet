@@ -16,6 +16,15 @@
               "required": false,
               "legend": "Save to Sheet",
               "properties": {
+                "_dataToPost": {
+                  "type": "string",
+                  "required": true,
+                  "title": "Data to Post",
+                  "default": "course is complete",
+                  "inputType": {"type": "Select", "options":["course is complete", "assessment is passed", "assessmentLMS is passed"]},
+                  "validators": ["required"],
+                  "help": "status information of the course or assessment (assessmentLMS requires spool)"
+                },
                 "_useMethod": {
                   "type": "string",
                   "required": true,
